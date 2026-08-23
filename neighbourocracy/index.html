@@ -8,8 +8,32 @@
 <title>Neighbourocracy | Join the Movement</title>
 <style>
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;min-height:100vh;font-family:Inter,Arial,sans-serif;color:#102b50;background:linear-gradient(135deg,#edf7fb,#fffdf5 48%,#eef8f1);display:flex;justify-content:center;padding:16px}
-.page{width:min(650px,100%);position:relative}
+body{margin:0;min-height:100vh;font-family:Inter,Arial,sans-serif;color:#102b50;background:linear-gradient(135deg,#edf7fb,#fffdf5 48%,#eef8f1);display:flex;justify-content:center;padding:16px;position:relative;overflow-x:hidden}
+
+/* Subtle blurred background image behind the card, for an attractive layered look */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=60');
+  background-size:cover;
+  background-position:center;
+  filter:blur(14px) saturate(1.05) brightness(1.05);
+  transform:scale(1.12);
+  opacity:.22;
+  pointer-events:none;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  background:linear-gradient(135deg,rgba(237,247,251,.85),rgba(255,253,245,.82) 48%,rgba(238,248,241,.85));
+  pointer-events:none;
+}
+
+.page{width:min(650px,100%);position:relative;z-index:1}
 .card{position:relative;overflow:hidden;border:1px solid rgba(16,43,80,.11);border-radius:30px;background:rgba(255,255,255,.94);box-shadow:0 24px 70px rgba(16,43,80,.15)}
 .hero{position:relative;text-align:center;padding:34px 24px 25px;background:linear-gradient(145deg,#fffdf6,#eff8f3)}
 .dots{position:absolute;right:19px;top:18px;width:60px;height:46px;background-image:radial-gradient(#1670b6 1.5px,transparent 1.5px);background-size:12px 12px;opacity:.7}
@@ -21,8 +45,135 @@ body{margin:0;min-height:100vh;font-family:Inter,Arial,sans-serif;color:#102b50;
 .tag{margin:14px 0 22px;font-size:11px;letter-spacing:2px;font-weight:900;color:#527f38}
 h1{margin:0;font-size:clamp(35px,8vw,55px);line-height:.98;letter-spacing:-2px}.green{color:#73b83f}
 .intro{max-width:520px;margin:13px auto 0;color:#53667a;font-size:15px;line-height:1.55}
-.primary{display:inline-flex;align-items:center;gap:9px;margin-top:21px;padding:15px 25px;border-radius:999px;background:#102b50;color:#fff;text-decoration:none;font-weight:900;box-shadow:0 9px 20px rgba(16,43,80,.2);transition:.2s}
-.primary:hover{transform:translateY(-3px);box-shadow:0 13px 25px rgba(16,43,80,.25)}
+
+/* CTA wrapper: button + click-here hand hint */
+.cta-wrap{position:relative;display:inline-flex;align-items:center;margin-top:21px}
+
+.primary{
+  position:relative;
+  display:inline-flex;align-items:center;gap:9px;
+  padding:15px 25px;border-radius:999px;
+  background:#102b50;color:#fff;text-decoration:none;font-weight:900;
+  box-shadow:0 9px 20px rgba(16,43,80,.2);
+  transition:transform .25s ease, box-shadow .25s ease, background .35s ease, text-shadow .2s ease;
+  z-index:1;
+}
+/* 3D pop on hover: layered text-shadow gives the lettering raised depth */
+.primary:hover,.primary:focus-visible{
+  transform:translateY(-4px);
+  background:#0c2036;
+  box-shadow:0 0 10px rgba(115,184,63,.65),
+             0 0 22px rgba(115,184,63,.45),
+             0 0 40px rgba(22,112,182,.4),
+             0 16px 26px rgba(16,43,80,.35);
+  text-shadow:0 1px 0 #294a72,
+              0 2px 0 #1c3a5c,
+              0 3px 0 #142c47,
+              0 4px 6px rgba(0,0,0,.35),
+              0 0 10px rgba(139,208,78,.75);
+}
+.primary:active{transform:translateY(-1px) scale(.99)}
+
+/* Slow, subtle neon light that travels around the border edge (not a full glowing ring) */
+.primary::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:999px;
+  padding:2px;
+  background:conic-gradient(from 0deg,
+              transparent 0%,
+              transparent 78%,
+              rgba(58,168,255,.15) 86%,
+              rgba(120,205,255,.95) 92%,
+              rgba(58,168,255,.15) 98%,
+              transparent 100%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  filter:drop-shadow(0 0 5px rgba(94,196,255,.6));
+  opacity:.85;
+  z-index:-1;
+  animation:neonRotate 6s linear infinite;
+  transition:filter .35s ease;
+}
+.primary:hover::before,.primary:focus-visible::before{
+  filter:drop-shadow(0 0 8px rgba(94,196,255,.85));
+}
+@keyframes neonRotate{
+  to{transform:rotate(360deg)}
+}
+
+/* Full-perimeter rainbow glow that slowly rotates, always visible, like the reference */
+.primary::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:999px;
+  padding:2px;
+  background:conic-gradient(from 0deg,
+              #ff3b5c,
+              #ff9d2e,
+              #ffe14d,
+              #4ade80,
+              #38bdf8,
+              #7c5cff,
+              #ff3b5c);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  filter:drop-shadow(0 0 6px rgba(255,255,255,.35)) blur(.3px);
+  opacity:.9;
+  z-index:-1;
+  animation:neonRotateFast 5s linear infinite;
+  transition:opacity .4s ease;
+}
+.primary:hover::after,.primary:focus-visible::after{
+  opacity:1;
+}
+@keyframes neonRotateFast{
+  to{transform:rotate(-360deg)}
+}
+
+/* Click-here hand icon hint */
+.click-hint{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-left:12px;
+  color:#527f38;
+  pointer-events:none;
+  user-select:none;
+}
+.click-hint .hand{
+  font-size:24px;
+  display:inline-block;
+  animation:pointBounce 1.4s ease-in-out infinite;
+  transform-origin:50% 50%;
+}
+.click-hint .label{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.5px;
+  margin-top:2px;
+  white-space:nowrap;
+}
+/* Desktop: hand sits to the right of the button, so it points LEFT toward it */
+@keyframes pointBounce{
+  0%,100%{transform:rotate(-90deg) translate(0,0)}
+  50%{transform:rotate(-90deg) translate(0,-5px)}
+}
+@media(max-width:460px){
+  .cta-wrap{flex-direction:column}
+  .click-hint{margin-left:0;margin-top:6px;flex-direction:row;gap:6px}
+  /* Mobile: hand sits below the button, so it points UP toward it */
+  .click-hint .hand{animation:pointBounceH 1.4s ease-in-out infinite}
+  @keyframes pointBounceH{
+    0%,100%{transform:rotate(0deg) translate(0,0)}
+    50%{transform:rotate(0deg) translate(0,-5px)}
+  }
+}
+
 .features{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:18px 20px 22px}
 .feature{padding:14px 8px;text-align:center;border-radius:18px;background:#f5faef;border:1px solid #e1edda}.feature .ico{font-size:22px}.feature b{display:block;font-size:12px;margin-top:6px}.feature span{display:block;font-size:10px;color:#657477;margin-top:3px}
 .share{margin:0 20px 22px;padding:17px;border-radius:19px;background:#102b50;color:#fff;text-align:center}.share strong{display:block;color:#8bd04e;font-size:15px}.share small{display:block;margin-top:5px;color:#d8e7f6;font-size:11px}
@@ -39,7 +190,10 @@ h1{margin:0;font-size:clamp(35px,8vw,55px);line-height:.98;letter-spacing:-2px}.
 <div class="tag">GOVERNANCE WHERE EVERYONE HAS A SAY</div>
 <h1>Be Part of the <span class="green">Change!</span></h1>
 <p class="intro">A movement for participatory communities, inclusive governance and a better world for all.</p>
+<div class="cta-wrap">
 <a class="primary" href="links.html">EXPLORE • FOLLOW • WATCH • SHARE&nbsp; →</a>
+<span class="click-hint" aria-hidden="true"><span class="hand">👆</span><span class="label">CLICK HERE</span></span>
+</div>
 </div>
 <div class="features">
 <div class="feature"><div class="ico">👥</div><b>COMMUNITY</b><span>Stronger together</span></div>
