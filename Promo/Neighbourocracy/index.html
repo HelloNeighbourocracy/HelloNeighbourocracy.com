@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b50">
+<title>Neighbourocracy | Join the Movement</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Inter:wght@800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box} html,body{margin:0;min-height:100vh}
+body{
+  font-family:Inter,Outfit,sans-serif;
+  background:
+    radial-gradient(1000px 500px at 50% -10%, rgba(115,184,63,.10), transparent 70%),
+    linear-gradient(135deg,#f2f7ff 0%, #eef6f2 100%);
+  display:flex;justify-content:center;align-items:center;
+  padding:16px;overflow:auto;
+}
+/* 75% fit - decent centred poster, not awkward, not full */
+.page{
+  width:75vw;max-width:520px;
+  min-height:auto;
+  display:flex;flex-direction:column;
+}
+.card{
+  width:100%;
+  position:relative;
+  background:#fff;
+  border-radius:28px;
+  box-shadow:0 20px 60px rgba(16,43,80,.16), 0 1px 0 #fff inset;
+  border:1px solid rgba(16,43,80,.06);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  background-image:
+    radial-gradient(900px 380px at 50% -8%, rgba(255,255,255,.92), transparent 62%),
+    radial-gradient(420px 260px at 4% 28%, rgba(116,196,113,.13), transparent 72%),
+    radial-gradient(460px 280px at 96% 30%, rgba(90,178,232,.13), transparent 72%),
+    linear-gradient(180deg,#fdfefe 0%,#f5fbff 43%,#eaf4f5 72%,#dbead7 100%);
+}
+.card::before{
+  content:"";
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  opacity:.26;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+    radial-gradient(circle at 86% 17%, rgba(255,255,255,.8) 0 2px, transparent 3px),
+    radial-gradient(ellipse at 50% 7%, rgba(255,255,255,.65), transparent 35%),
+    linear-gradient(180deg, transparent 0 52%, rgba(85,130,105,.10) 73%, rgba(45,78,68,.18) 100%);
+  background-size:auto,auto,auto,auto;
+}
+.card::after{
+  content:"";
+  position:absolute;left:0;right:0;bottom:0;height:42%;
+  z-index:0;pointer-events:none;opacity:.20;
+  background:
+    linear-gradient(180deg,transparent 0%,rgba(255,255,255,.18) 22%,rgba(66,103,82,.16) 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 9px,
+      rgba(42,73,73,.20) 9px 13px,
+      transparent 13px 22px
+    );
+  clip-path:polygon(
+    0 78%,3% 72%,5% 80%,8% 68%,11% 77%,14% 63%,17% 75%,20% 66%,
+    23% 73%,26% 58%,29% 74%,32% 64%,35% 76%,38% 61%,41% 72%,44% 55%,
+    47% 73%,50% 62%,53% 76%,56% 59%,59% 72%,62% 64%,65% 76%,68% 60%,
+    71% 73%,74% 63%,77% 77%,80% 66%,83% 74%,86% 61%,89% 76%,92% 67%,
+    95% 74%,100% 62%,100% 100%,0 100%
+  );
+}
+
+.dots{position:absolute;width:28px;height:24px;background-image:radial-gradient(#8a9bb0 1.1px,transparent 1.1px);background-size:7px 7px;opacity:.38;z-index:1}
+.dots.tl{left:12px;top:12px} .dots.tr{right:14px;top:78px}
+.spark{
+  position:absolute;z-index:1;pointer-events:none;width:5px;height:5px;border-radius:50%;
+  background:rgba(255,255,255,.85);
+  box-shadow:0 0 9px rgba(255,255,255,.75);
+  animation:softFloat 5.5s ease-in-out infinite alternate;
+}
+.spark.s1{left:24%;top:22%;animation-delay:-1.2s}
+.spark.s2{right:19%;top:34%;width:4px;height:4px;animation-delay:-2.6s}
+.spark.s3{left:72%;top:12%;width:3px;height:3px;animation-delay:-3.8s}
+@keyframes softFloat{from{transform:translateY(0);opacity:.28}to{transform:translateY(-7px);opacity:.78}}
+
+.leaf{
+  position:absolute;z-index:2;pointer-events:none;
+  filter:drop-shadow(0 5px 7px rgba(51,105,61,.10));
+  opacity:.76;
+}
+.leaf.tl{left:2px;top:54px;font-size:32px;transform:rotate(-18deg)}
+.leaf.tr{right:3px;top:4px;font-size:38px;transform:rotate(18deg)}
+
+
+.header{position:relative;z-index:3;text-align:center;padding:16px 16px 8px;flex-shrink:0}
+.earth{width:40px;height:40px;margin:0 auto 5px;border-radius:50%;display:grid;place-items:center;font-size:18px;background:radial-gradient(circle at 35% 30%,#8ed8ef,#3a8bb8 58%,#1d5d82);box-shadow:0 5px 10px rgba(26,93,130,.16), inset 0 1px 2px rgba(255,255,255,.7)}
+.brand{font-family:Outfit,sans-serif;font-size:26px;line-height:.9;font-weight:900;letter-spacing:-1px;color:#102b50} .brand span{color:#73b83f}
+.tag{margin:3px 0 3px;font-size:7.8px;letter-spacing:1.8px;font-weight:900;color:#5a8a42}
+.h1{margin:0;font-family:Outfit,sans-serif;font-size:18px;letter-spacing:-.5px;color:#102b50} .h1 .green{color:#73b83f}
+.intro{max-width:320px;margin:4px auto 0;color:#5b7285;font-size:10px;line-height:1.35}
+
+.pill-wrap{margin-top:8px;display:flex;justify-content:center}
+.primary{
+  position:relative;display:inline-flex;align-items:center;
+  padding:8px 16px;border-radius:999px;
+  background:#102b50;color:#fff;text-decoration:none;font-weight:900;font-size:9.5px;letter-spacing:.5px;
+  box-shadow:0 6px 14px rgba(16,43,80,.18);z-index:1;
+}
+.primary::before{
+  content:"";position:absolute;inset:-2px;border-radius:999px;padding:2px;
+  background:conic-gradient(from 0deg, transparent 0%, transparent 78%, rgba(58,168,255,.18) 86%, rgba(120,205,255,.95) 92%, rgba(58,168,255,.18) 98%, transparent 100%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  filter:drop-shadow(0 0 4px rgba(94,196,255,.6));opacity:.92;z-index:-1;
+  animation:neonRotate 6s linear infinite;
+}
+.primary::after{
+  content:"";position:absolute;inset:-2px;border-radius:999px;padding:2px;
+  background:conic-gradient(from 0deg, #ff3b5c, #ff9d2e, #ffe14d, #4ade80, #38bdf8, #7c5cff, #ff3b5c);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  filter:drop-shadow(0 0 5px rgba(255,255,255,.32)) blur(.2px);opacity:.88;z-index:-1;
+  animation:neonRotateFast 5s linear infinite;
+}
+@keyframes neonRotate{to{transform:rotate(360deg)}}
+@keyframes neonRotateFast{to{transform:rotate(360deg)}}
+
+.links-wrap{position:relative;z-index:3;padding:10px 14px 10px;flex-shrink:0}
+.links{display:grid;gap:10px}
+
+.glass{
+  position:relative;display:flex;align-items:center;
+  height:62px;padding:0 12px 0 8px;
+  border-radius:20px;text-decoration:none;color:#fff;
+  border:2.5px solid rgba(255,255,255,.55);
+  box-shadow:0 0 0 2px rgba(255,255,255,.22) inset, 0 1.2px 0 rgba(255,255,255,.92) inset, 0 -6px 12px rgba(0,0,0,.14) inset, 0 8px 0 rgba(0,0,0,.08), 0 14px 22px rgba(0,0,0,.14);
+  overflow:hidden;transition:transform .16s ease,filter .16s ease;isolation:isolate;
+}
+.glass::before{content:"";position:absolute;left:0;right:0;top:0;height:52%;background:linear-gradient(180deg, rgba(255,255,255,.56) 0%, rgba(255,255,255,.24) 30%, rgba(255,255,255,.06) 58%, transparent 100%);border-radius:20px 20px 55% 55%/20px 20px 45% 45%;z-index:2;pointer-events:none}
+.glass::after{content:"";position:absolute;inset:-2px;border-radius:22px;padding:2px;background:conic-gradient(from 0deg,transparent 0deg 230deg,rgba(255,255,255,.18) 245deg,var(--neon1) 258deg,rgba(255,255,255,.72) 272deg,var(--neon2) 286deg,transparent 305deg 360deg);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;filter:drop-shadow(0 0 4px var(--glow));opacity:.72;z-index:1;pointer-events:none;animation:platformNeonRotate 7s linear infinite}
+.glass:hover{transform:translateY(-2px) scale(1.006);filter:saturate(1.05)}
+.glass:active{transform:translateY(1px) scale(.998)}
+@keyframes platformNeonRotate{to{transform:rotate(360deg)}}
+.icon-outer{width:48px;height:48px;flex:0 0 48px;border-radius:50%;display:grid;place-items:center;position:relative;z-index:3;margin-right:10px;background:linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,.12));box-shadow:0 0 0 2px rgba(255,255,255,.84) inset, 0 1.8px 0 rgba(255,255,255,.95) inset, 0 -4px 8px rgba(0,0,0,.28) inset, 0 5px 12px rgba(0,0,0,.22), 0 0 0 1px rgba(0,0,0,.10);border:1.5px solid rgba(255,255,255,.7)}
+.icon-inner{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:20px;font-weight:900;color:#fff;position:relative;overflow:hidden;box-shadow:inset 0 1px 1px rgba(255,255,255,.85), inset 0 -3px 5px rgba(0,0,0,.20)}
+.icon-inner img{width:100%;height:100%;object-fit:cover;border-radius:50%}.icon-inner svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 2px rgba(0,0,0,.20))}
+.txt{position:relative;z-index:3;flex:1;line-height:1.05} .txt-main{font-family:Outfit,sans-serif;font-weight:900;font-size:13px;letter-spacing:.1px;text-shadow:0 1px 0 rgba(0,0,0,.16),0 2px 6px rgba(0,0,0,.22)}
+.arrow{position:relative;z-index:3;margin-left:6px;font-size:22px;font-weight:900;text-shadow:0 1px 2px rgba(0,0,0,.28)}
+
+.web{--neon1:#73f5ff;--neon2:#168eff;--glow:rgba(55,220,255,.72);background:linear-gradient(100deg,#20dff0 0%,#0ab6c7 18%,#0a8fbf 46%,#0a6fc2 90%)} .web .icon-inner{background:radial-gradient(circle at 35% 30%,#8af6ff,#0a8fbf 62%,#084a8a)}
+.ig{--neon1:#ff4bc8;--neon2:#ff9d22;--glow:rgba(255,92,190,.78);background:linear-gradient(100deg,#b14bf0 0%,#d342c8 18%,#f0438f 42%,#ff6a3d 72%,#ffb326 100%)} .ig .icon-inner{background:transparent;box-shadow:none} .ig .icon-outer{background:rgba(255,255,255,.20);border-color:rgba(255,255,255,.86)}
+.fb{--neon1:#63c5ff;--neon2:#1671ff;--glow:rgba(45,150,255,.76);background:linear-gradient(100deg,#4aa8ff 0%,#1877f2 38%,#0c4da8 100%)} .fb .icon-inner{background:linear-gradient(135deg,#5aafff,#0b4fa1);font-family:Inter,sans-serif;font-size:24px}
+.yt{--neon1:#ff7777;--neon2:#ff1717;--glow:rgba(255,45,45,.82);background:linear-gradient(100deg,#ff7d7d 0%,#ff2525 36%,#b50000 100%)} .yt .icon-inner{background:linear-gradient(135deg,#ff5555,#8f0000)}
+
+.bottom-scene{position:relative;z-index:3;height:116px;flex-shrink:0;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(200,220,235,.32) 18%, rgba(120,155,185,.42) 48%, rgba(70,95,120,.72) 100%)}
+.bottom-scene::before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=70') center 30%/cover no-repeat;opacity:.50;mix-blend-mode:multiply}
+.bottom-scene::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,.52) 0%, rgba(255,255,255,.08) 24%, rgba(0,0,0,.16) 78%)}
+.people{position:absolute;bottom:43px;left:0;right:0;display:flex;justify-content:center;gap:16px;z-index:2;filter:brightness(0) contrast(1.1) drop-shadow(0 2px 3px rgba(0,0,0,.5));font-size:26px}
+.pill-bottom{position:absolute;left:50%;bottom:25px;transform:translateX(-50%);z-index:3;padding:6px 12px;border-radius:999px;background:rgba(14,32,56,.92);border:1px solid rgba(255,255,255,.12);color:#d6eaff;font-size:9.5px;font-weight:800;letter-spacing:.28px;white-space:nowrap;display:flex;gap:5px} .pill-bottom b{color:#8bd04e}
+.footer{position:relative;z-index:3;text-align:center;padding:6px 0 8px;font-size:8.5px;color:#6a8296;background:rgba(255,255,255,.90);letter-spacing:.18px;flex-shrink:0}
+.bottom-subline{
+  position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
+  z-index:4;white-space:nowrap;
+  font-family:"Outfit",sans-serif;font-size:9.5px;font-weight:500;
+  font-style:italic;letter-spacing:.35px;color:rgba(255,255,255,.97);
+  text-shadow:
+    0 1px 0 rgba(15,35,54,.62),
+    0 2px 4px rgba(15,35,54,.42),
+    0 0 8px rgba(255,255,255,.18);
+}
+
+
+@media(max-width:600px){
+  .page{width:92vw} 
+}
+@media(max-height:700px){
+  .page{width:68vw;max-width:440px}
+  .glass{height:56px} .icon-outer{width:44px;height:44px;flex:0 0 44px} .icon-inner{width:36px;height:36px;font-size:18px}
+  .txt-main{font-size:12px} .bottom-scene{height:104px} .people{font-size:22px;bottom:38px} .pill-bottom{bottom:23px}.bottom-subline{font-size:8.5px;bottom:5px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="card">
+  <div class="dots tl"></div><div class="dots tr"></div>
+  <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span>
+  <div class="leaf tl">🌿</div><div class="leaf tr">🍃</div>
+
+  <div class="header">
+    <div class="earth">🌍</div>
+    <div class="brand">Neighbour<span>ocracy</span></div>
+    <div class="tag">GOVERNANCE WHERE EVERYONE HAS A SAY</div>
+    <h1 class="h1">Be Part of the <span class="green">Change!</span></h1>
+    <div class="pill-wrap"><a class="primary" href="#links">EXPLORE • FOLLOW • WATCH • SHARE ↓</a></div>
+  </div>
+
+  <div class="links-wrap" id="links">
+    <div class="links">
+      <a class="glass web" href="https://helloneighbourocracy.github.io/HelloNeighbourocracy.com/" target="_blank" rel="noopener" aria-label="Visit our website">
+        <div class="icon-outer"><div class="icon-inner"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24" fill="none" stroke="#fff" stroke-width="3.2"/><path d="M8 32h48M32 8c7.2 7.3 10.5 15.4 10.5 24S39.2 48.7 32 56M32 8C24.8 15.3 21.5 23.4 21.5 32S24.8 48.7 32 56" fill="none" stroke="#fff" stroke-width="2.6"/><path d="M12 21c5.5 3 12.2 4.5 20 4.5S46.5 24 52 21" fill="none" stroke="#bffaff" stroke-width="2"/></svg></div></div>
+        <div class="txt"><div class="txt-main">VISIT OUR WEBSITE</div></div><div class="arrow">›</div>
+      </a>
+      <a class="glass ig" href="https://instagram.com/helloneighbourocracy/" target="_blank" rel="noopener" aria-label="Follow us on Instagram">
+        <div class="icon-outer"><div class="icon-inner"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="igGrad" x1="8" y1="56" x2="56" y2="8" gradientUnits="userSpaceOnUse"><stop stop-color="#ffdf72"/><stop offset=".28" stop-color="#ff3f5f"/><stop offset=".58" stop-color="#c135c8"/><stop offset="1" stop-color="#5b51d8"/></linearGradient></defs><rect x="8" y="8" width="48" height="48" rx="14" fill="url(#igGrad)"/><rect x="17" y="17" width="30" height="30" rx="9" fill="none" stroke="#fff" stroke-width="4"/><circle cx="32" cy="32" r="7.5" fill="none" stroke="#fff" stroke-width="4"/><circle cx="43.5" cy="20.5" r="2.7" fill="#fff"/></svg></div></div>
+        <div class="txt"><div class="txt-main">FOLLOW US ON<br>INSTAGRAM</div></div><div class="arrow">›</div>
+      </a>
+      <a class="glass fb" href="https://facebook.com/profile.php?id=61574321939652" target="_blank" rel="noopener" aria-label="Like and follow on Facebook">
+        <div class="icon-outer"><div class="icon-inner"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="25" fill="#1877F2"/><path d="M36 54V35h6.2l1-7.2H36v-4.6c0-2.1 1.1-3.5 3.8-3.5h4.1v-6.5c-1.2-.2-2.8-.4-4.9-.4-6 0-10 3.6-10 10.1v4.9h-6.6V35H29v19z" fill="#fff"/></svg></div></div>
+        <div class="txt"><div class="txt-main">LIKE & FOLLOW<br>ON FACEBOOK</div></div><div class="arrow">›</div>
+      </a>
+      <a class="glass yt" href="https://youtube.com/@HelloNeighbourocracy" target="_blank" rel="noopener" aria-label="Watch us on YouTube">
+        <div class="icon-outer"><div class="icon-inner"><svg viewBox="0 0 64 64" aria-hidden="true"><rect x="7" y="15" width="50" height="34" rx="11" fill="#fff"/><path d="M28 24l14 8-14 8z" fill="#ff0000"/></svg></div></div>
+        <div class="txt"><div class="txt-main">WATCH US<br>ON YOUTUBE</div></div><div class="arrow">›</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="bottom-scene">
+    <div class="people"><span>🧍‍♂️</span><span>👩‍👧</span><span>👩‍👧</span><span>🙋‍♂️</span><span>🙋‍♀️</span></div>
+    <div class="pill-bottom">💚 <span>TOGETHER, LET'S BUILD <b>NEIGHBOUROCRACY!</b></span> 💚</div>
+    <div class="bottom-subline">A voice for everyone. A future for all.</div>
+  </div>
+  <div class="footer">Your voice makes a difference. • Explore • Follow • Watch • Share</div>
+</section>
+</main>
+</body>
+</html>
